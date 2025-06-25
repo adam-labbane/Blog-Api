@@ -10,11 +10,11 @@ app.use(cors({
   methods: ["GET", "POST", "PUT", "DELETE"],
   allowedHeaders: "*"
 }));
-//const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/blogdb";
+const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/blogdb";
 
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://adam:mazdour@cluster0.hrwrde2.mongodb.net")
+mongoose.connect(MONGO_URI)
   .then(() => {
     console.log("Connexion réussie à MongoDB Atlas");
   })
