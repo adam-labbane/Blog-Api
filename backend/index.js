@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const Post = require("./models/Post");
 const cors = require("cors");
+const connectDB = require("./lib/db");
 
 
 const app = express();
@@ -11,16 +12,7 @@ app.use(cors({
   allowedHeaders: "*"
 }));
 //const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/blogdb";
-
 app.use(express.json());
-
-mongoose.connect("mongodb+srv://adam:mazdour@cluster0.hrwrde2.mongodb.net")
-  .then(() => {
-    console.log("Connexion réussie à MongoDB Atlas");
-  })
-  .catch((err) => {
-    console.error("Échec de la connexion :", err);
-  });
 
 // Routes
 app.get("/", (req, res) => {
@@ -29,17 +21,17 @@ app.get("/", (req, res) => {
 
 app.post("/posts", async (req, res) => {
   try {
-    console.log("📥 Reçu du frontend :", req.body);
+    await connectDB();
     const newPost = await Post.create(req.body);
     res.status(201).json(newPost);
   } catch (err) {
-    console.error("Erreur création post :", err);
     res.status(400).json({ error: err.message });
   }
 });
 
 app.get("/posts", async (req, res) => {
   try {
+    await connectDB();
     const posts = await Post.find().sort({ createdAt: -1 });
     res.json(posts);
   } catch (err) {
