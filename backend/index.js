@@ -14,12 +14,12 @@ app.use(cors({
 
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://adam:mazdour@cluster0.hrwrde2.mongodb.net/blogdb?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect("mongodb+srv://adam:mazdour@cluster0.hrwrde2.mongodb.net")
   .then(() => {
-    console.log("✅ Connexion réussie à MongoDB Atlas");
+    console.log("Connexion réussie à MongoDB Atlas");
   })
   .catch((err) => {
-    console.error("❌ Échec de la connexion :", err);
+    console.error("Échec de la connexion :", err);
   });
 
 // Routes
@@ -46,5 +46,6 @@ app.get("/posts", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
+// const PORT = 8000;
+// app.listen(PORT, () => console.log(`Serveur démarré`));
 module.exports = app;
