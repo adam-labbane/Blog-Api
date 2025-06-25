@@ -3,7 +3,6 @@ const mongoose = require("mongoose");
 const Post = require("./models/Post");
 
 const app = express();
-const PORT = 8000;
 //const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/blogdb";
 
 app.use(express.json());
@@ -33,8 +32,4 @@ app.get("/posts", async (req, res) => {
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`Serveur lancé sur http://localhost:${PORT}`);
 });
