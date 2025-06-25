@@ -14,7 +14,7 @@ app.use(cors({
 
 app.use(express.json());
 
-mongoose.connect("mongodb+srv://adam:adam1234%40mongo@cluster0.hrwrde2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
+mongoose.connect("mongodb+srv://adam:adam1234%40mongo@cluster0.hrwrde2.mongodb.net/blogdb?retryWrites=true&w=majority&appName=Cluster0")
   .then(() => console.log("Connecté à MongoDB"))
   .catch((err) => console.error("Erreur MongoDB :", err));
 
