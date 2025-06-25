@@ -1,8 +1,11 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const Post = require("./models/Post");
+const cors = require("cors");
+
 
 const app = express();
+app.use(cors());
 //const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/blogdb";
 
 app.use(express.json());

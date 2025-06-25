@@ -1,18 +1,16 @@
-import React from "react";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, { useState } from 'react';
+import PostForm from './components/PostForm';
+import PostList from './components/PostList';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
+  const [reload, setReload] = useState(false);
+
   return (
     <div className="container py-5">
-      <h1 className="text-center text-primary mb-4">Bienvenue sur le Blog</h1>
-      <div className="card shadow-sm">
-        <div className="card-body">
-          <p className="card-text">
-            Ceci est un test de style Bootstrap. Si tu vois ce message avec un joli cadre, c'est que tout fonctionne !
-          </p>
-          <button className="btn btn-success">Clique ici</button>
-        </div>
-      </div>
+      <h1 className="text-center text-primary mb-4">📝 Mon Blog</h1>
+      <PostForm onPostCreated={() => setReload(!reload)} />
+      <PostList reload={reload} />
     </div>
   );
 }
