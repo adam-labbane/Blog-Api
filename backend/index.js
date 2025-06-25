@@ -46,5 +46,6 @@ app.get("/posts", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-
+const PORT = 8000;
+app.listen(PORT, () => console.log(`Serveur démarré`));
 module.exports = app;
