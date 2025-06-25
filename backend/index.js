@@ -8,15 +8,19 @@ const app = express();
 app.use(cors({
   origin: "*",
   methods: ["GET", "POST", "PUT", "DELETE"],
-  allowedHeaders: ["Content-Type", "Authorization"]
+  allowedHeaders: "*"
 }));
 //const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/blogdb";
 
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log("Connecté à MongoDB"))
-  .catch((err) => console.error("Erreur MongoDB :", err));
+mongoose.connect("mongodb+srv://adam:adam1234%40mongo@cluster0.hrwrde2.mongodb.net/blogdb?retryWrites=true&w=majority&appName=Cluster0")
+  .then(() => {
+    console.log("✅ Connexion réussie à MongoDB Atlas");
+  })
+  .catch((err) => {
+    console.error("❌ Échec de la connexion :", err);
+  });
 
 // Routes
 app.get("/", (req, res) => {
