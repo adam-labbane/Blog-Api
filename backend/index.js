@@ -5,7 +5,11 @@ const cors = require("cors");
 
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"]
+}));
 //const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/blogdb";
 
 app.use(express.json());
@@ -21,9 +25,11 @@ app.get("/", (req, res) => {
 
 app.post("/posts", async (req, res) => {
   try {
+    console.log("📥 Reçu du frontend :", req.body);
     const newPost = await Post.create(req.body);
     res.status(201).json(newPost);
   } catch (err) {
+    console.error("❌ Erreur création post :", err);
     res.status(400).json({ error: err.message });
   }
 });
