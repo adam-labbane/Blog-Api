@@ -4,11 +4,11 @@ const Post = require("./models/Post");
 
 const app = express();
 const PORT = 8000;
-const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/blogdb";
+//const MONGO_URI = process.env.MONGO_URI || "mongodb://localhost:27017/blogdb";
 
 app.use(express.json());
 
-mongoose.connect(MONGO_URI)
+mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log("Connecté à MongoDB"))
   .catch((err) => console.error("Erreur MongoDB :", err));
 
