@@ -14,7 +14,7 @@ app.use(cors({
 
 app.use(express.json());
 
-mongoose.connect(process.env.MONGO_URI)
+mongoose.connect("mongodb+srv://adam:adam1234%40mongo@cluster0.hrwrde2.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0")
   .then(() => console.log("Connecté à MongoDB"))
   .catch((err) => console.error("Erreur MongoDB :", err));
 
@@ -29,7 +29,7 @@ app.post("/posts", async (req, res) => {
     const newPost = await Post.create(req.body);
     res.status(201).json(newPost);
   } catch (err) {
-    console.error("❌ Erreur création post :", err);
+    console.error("Erreur création post :", err);
     res.status(400).json({ error: err.message });
   }
 });
